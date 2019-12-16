@@ -1,2 +1,3 @@
 ---
-# tasks file for role-laptop
+  - name: Include distro
+    include: "{{ ansible_os_family }}.yml"
