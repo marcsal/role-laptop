@@ -32,9 +32,9 @@
 
 - name: Wait for
   wait_for:
-    timeout: 20 
+    timeout: 20
 
-- name: "Install applications"
+- name: Install basic applications
   yum:
     name:
       - git
@@ -47,5 +47,15 @@
       # - vlc
       - gnome-tweak-tool
       - terminator
+    state: present
+    update_cache: yes
+
+- name: Install Numix theme
+  yum:
+    name:
+      - numix-icon-theme
+      - numix-folders
+      - numix-icon-theme-circle
+      - numix-icon-theme-square
     state: present
     update_cache: yes
