@@ -58,7 +58,6 @@
   yum:
     name:
       - numix-icon-theme
-      - numix-folders
       - numix-icon-theme-circle
       - numix-icon-theme-square
     state: present
