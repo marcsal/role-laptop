@@ -1,38 +1,42 @@
 ---
-- name: Instalar repo virtualbox
-  yum_repository:
-    name: virtualbox
-    description: Fedora $releasever - $basearch - VirtualBox
-    enabled: yes
-    baseurl: http://download.virtualbox.org/virtualbox/rpm/fedora/$releasever/$basearch
-    repo_gpgcheck: yes
-    gpgcheck: yes
-    gpgkey: https://www.virtualbox.org/download/oracle_vbox.asc
-    state: present
+- name: VirtualBox Install
+  block:
+    - name: Instalar repo virtualbox
+      yum_repository:
+        name: virtualbox
+        description: Fedora $releasever - $basearch - VirtualBox
+        enabled: yes
+        baseurl: http://download.virtualbox.org/virtualbox/rpm/fedora/$releasever/$basearch
+        repo_gpgcheck: yes
+        gpgcheck: yes
+        gpgkey: https://www.virtualbox.org/download/oracle_vbox.asc
+        state: present
 
-- name: "Install VirtualBox"
-  yum:
-    name:
-      - kernel-headers
-      - kernel-devel
-      - dkms
-      - gcc
-      - VirtualBox-6.0
-    state: present
-    update_cache: yes
+    - name: "Install VirtualBox"
+      yum:
+        name:
+          - kernel-headers
+          - kernel-devel
+          - dkms
+          - gcc
+          - VirtualBox-6.0
+        state: present
+        update_cache: yes
 
-- name: adding existing user to group
-  user:
-    name: "{{ user }}"
-    groups: vboxusers
-    append: yes
+    - name: adding existing user to group
+      user:
+        name: "{{ user }}"
+        groups: vboxusers
+        append: yes
 
-- name: VBOX setup script
-  shell: /usr/lib/virtualbox/vboxdrv.sh setup
+    - name: VBOX setup script
+      shell: /usr/lib/virtualbox/vboxdrv.sh setup
 
-- name: Wait for
-  wait_for:
-    timeout: 20
+    - name: Wait for
+      wait_for:
+        timeout: 20
+
+  when: vbox|bool == True
 
 - name: Install basic applications
   yum:
