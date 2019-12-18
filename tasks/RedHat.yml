@@ -59,3 +59,10 @@
       - numix-icon-theme-square
     state: present
     update_cache: yes
+
+- name: Install Chrome
+  yum:
+    name:
+      - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+    state: present
+    update_cache: yes
