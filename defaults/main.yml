@@ -1,4 +1,3 @@
 ---
-user: []
-vbox: False
-# defaults file for role-laptop
+user: "marcos"
+vbox: True

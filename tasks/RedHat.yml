@@ -1,4 +1,24 @@
 ---
+- name: Current kernel to var
+  shell: uname -r
+  register: kernel
+- debug: var=kernel.stdout_lines
+
+- name: Install necesary packages
+  yum:
+    name:
+      - binutils
+      - make
+      - patch
+      - libgomp
+      - glibc-headers
+      - glibc-devel
+      - dkms
+      - kernel-headers
+      - kernel-devel
+      - dkms
+      - gcc
+
 - name: VirtualBox Install
   block:
     - name: Instalar repo virtualbox
@@ -15,10 +35,6 @@
     - name: "Install VirtualBox"
       yum:
         name:
-          - kernel-headers
-          - kernel-devel
-          - dkms
-          - gcc
           - VirtualBox-6.0
         state: present
         update_cache: yes
@@ -69,3 +85,8 @@
       - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
     state: present
     update_cache: yes
+
+- name: Install atom
+  dnf:
+    name: https://atom-installer.github.com/v1.42.0/atom.x86_64.rpm?s=1576347968&ext=.rpm
+    state: present
