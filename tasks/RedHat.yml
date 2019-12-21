@@ -1,9 +1,4 @@
 ---
-- name: Current kernel to var
-  shell: uname -r
-  register: kernel
-- debug: var=kernel.stdout_lines
-
 - name: Install necesary packages
   yum:
     name:
