@@ -1,0 +1,83 @@
+---
+- name: Install necesary packages
+  apt:
+    name:
+      - binutils
+      - make
+      - patch
+      - libgomp
+      - glibc-headers
+      - glibc-devel
+      - dkms
+      - kernel-headers
+      - kernel-devel
+      - dkms
+      - gcc
+
+- name: VirtualBox Install
+  block:
+    - name: Instalar repo virtualbox
+      apt_repository:
+        name: virtualbox
+        description: deb [arch=amd64] <mydist> contrib
+        enabled: yes
+        baseurl: https://download.virtualbox.org/virtualbox/debian <mydist> contrib
+        repo_gpgcheck: yes
+        gpgcheck: yes
+        gpgkey: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+        state: present
+
+    - name: "Install VirtualBox"
+      apt:
+        name:
+          - VirtualBox-6.0
+        state: present
+        update_cache: yes
+
+    - name: adding existing user to group
+      user:
+        name: "{{ user }}"
+        groups: vboxusers
+        append: yes
+
+    - name: VBOX setup script
+      shell: /usr/lib/virtualbox/vboxdrv.sh setup
+
+  when: vbox|bool == True
+
+- name: Install basic applications
+  apt:
+    name:
+      - git
+      - zsh
+      - wget
+      - curl
+      - snapd
+      - vim
+      - vagrant
+      # - vlc
+      - gnome-tweak-tool
+      - terminator
+    state: present
+    update_cache: yes
+
+- name: Install Numix theme
+  apt:
+    name:
+      - numix-icon-theme
+      - numix-icon-theme-circle
+      - numix-icon-theme-square
+    state: present
+    update_cache: yes
+
+- name: Install Chrome
+  apt:
+    name:
+      - https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    state: present
+    update_cache: yes
+
+- name: Install atom
+  apt:
+    name: https://atom-installer.github.com/v1.42.0/atom-amd64.deb?s=1576347951&ext=.deb
+    state: present
