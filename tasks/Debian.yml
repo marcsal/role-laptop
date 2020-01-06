@@ -18,7 +18,7 @@
   block:
     - name: Instalar repo virtualbox
       apt_repository:
-        repo: {{ virtualbox_apt_repo_url }}
+        repo: "{{ virtualbox_apt_repo_url }}"
         state: present
 
     - name: "Install VirtualBox"
