@@ -9,13 +9,21 @@
       - dkms
       - gcc
 
-- name: Add virtualbox repo key
-  apt_key:
-    url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
-    state: present
-
 - name: VirtualBox Install
   block:
+    # - name: Add virtualbox repo key
+    #   apt_key:
+    #     url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+    #     state: present
+
+    - name: VIRTUALBOX | add vb secure key
+      become: true
+      apt_key:
+        url: "{{ virtualbox_apt_key_url }}"
+        state: present
+      when: ( ansible_distribution == 'Debian' and ansible_distribution_version >= '8' ) or
+            ( ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '16.04' )
+
     - name: Instalar repo virtualbox
       apt_repository:
         repo: "deb http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
