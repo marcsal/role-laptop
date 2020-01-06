@@ -1,5 +1,5 @@
 ---
 user: "marcos"
 vbox: True
-virtualbox_apt_repo_url: http://download.virtualbox.org/virtualbox/debian
-virtualbox_apt_key_url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+virtualboxrepo: http://download.virtualbox.org/virtualbox/debian
+virtualboxkey: https://www.virtualbox.org/download/oracle_vbox_2016.asc
