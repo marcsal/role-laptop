@@ -8,6 +8,10 @@
       - dkms
       - dkms
       - gcc
+      - qemu-kvm
+      - libvirt-clients
+      - libvirt-daemon-system
+      - bridge-utils virt-manager
 
 - name: VirtualBox Install
   block:
