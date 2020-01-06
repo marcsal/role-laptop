@@ -16,10 +16,10 @@
 
 - name: VirtualBox Install
   block:
-    - name: Instalar repo virtualbox
-      apt_repository:
-        repo: https://download.virtualbox.org/virtualbox/debian/dists eoan contrib
-        state: present
+    # - name: Instalar repo virtualbox
+    #   apt_repository:
+    #     repo: http://download.virtualbox.org/virtualbox/debian eoan
+    #     state: present
 
     - name: "Install VirtualBox"
       apt:
