@@ -13,6 +13,7 @@
       - libvirt-daemon-system
       - bridge-utils
       - virt-manager
+    force_apt_get: yes
 
 - name: VirtualBox Install
   block:
