@@ -47,7 +47,7 @@
       wait_for:
         timeout: 20
 
-  when: vbox|bool == True
+  when: vbox|bool = True
 
 - name: Install basic applications
   yum:
