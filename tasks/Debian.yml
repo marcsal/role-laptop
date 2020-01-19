@@ -63,6 +63,7 @@
       - terminator
     state: present
     update_cache: yes
+    force_apt_get: yes
 
 - name: Install Numix theme
   apt:
@@ -71,6 +72,7 @@
       - numix-icon-theme-circle
     state: present
     update_cache: yes
+    force_apt_get: yes
 
     #- name: Install Chrome
     #apt:
