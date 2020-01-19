@@ -35,6 +35,7 @@
           - virtualbox-6.1
         state: present
         update_cache: yes
+        force_apt_get: yes
 
     - name: adding existing user to group
       user:
