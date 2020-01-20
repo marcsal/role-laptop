@@ -46,7 +46,8 @@
     - name: VBOX setup script
       shell: /usr/lib/virtualbox/vboxdrv.sh setup
 
-  when: vbox|bool = True
+  # when: vbox|bool = True
+  when: vbox|bool
 
 - name: Install basic applications
   apt:
