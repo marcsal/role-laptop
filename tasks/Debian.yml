@@ -32,7 +32,7 @@
     - name: "Install VirtualBox"
       apt:
         name:
-          - virtualbox-6.1
+          - virtualbox-6.0
         state: present
         update_cache: yes
         force_apt_get: yes
