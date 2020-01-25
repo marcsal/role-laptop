@@ -82,13 +82,13 @@
 
 - name: Install atom
   apt:
-    name: "https://atom-installer.github.com/v1.42.0/atom-amd64.deb?s=1576347951&ext=.deb"
+    deb: "https://atom-installer.github.com/v1.42.0/atom-amd64.deb?s=1576347951&ext=.deb"
     state: present
   when: atom|bool
 
 
-- name: Install visua studio
+- name: Install visual studio
   apt:
-    name: "https://az764295.vo.msecnd.net/stable/26076a4de974ead31f97692a0d32f90d735645c0/code_1.41.1-1576681836_amd64.deb"
+    deb: "https://az764295.vo.msecnd.net/stable/26076a4de974ead31f97692a0d32f90d735645c0/code_1.41.1-1576681836_amd64.deb"
     state: present
   when: visual|bool
