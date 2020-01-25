@@ -1,5 +1,7 @@
 ---
 user: "user"
 vbox: False
+atom: False
+visual: False
 virtualboxrepo: http://download.virtualbox.org/virtualbox/debian
 virtualboxkey: https://www.virtualbox.org/download/oracle_vbox_2016.asc
