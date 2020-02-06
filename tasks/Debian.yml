@@ -15,6 +15,14 @@
       - virt-manager
     force_apt_get: yes
 
+- name: Gnome installation
+  apt:
+    name:
+      - ubuntu-gnome-desktop
+      - gnome-shell
+    force_apt_get: yes
+  when: gnome|bool
+
 - name: VirtualBox Install
   block:
 
@@ -46,7 +54,6 @@
     - name: VBOX setup script
       shell: /usr/lib/virtualbox/vboxdrv.sh setup
 
-  # when: vbox|bool = True
   when: vbox|bool
 
 - name: Install basic applications
