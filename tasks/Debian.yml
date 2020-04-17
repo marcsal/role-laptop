@@ -52,7 +52,7 @@
         append: yes
 
     - name: VBOX setup script
-      shell: /usr/lib/virtualbox/vboxdrv.sh setup
+      command: /usr/lib/virtualbox/vboxdrv.sh setup
 
   when: vbox|bool
 
