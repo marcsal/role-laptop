@@ -65,6 +65,12 @@
     state: present
     update_cache: yes
     force_apt_get: yes
+- name: Cloning  oh-my-zsh
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh
+    dest: ~/.oh-my-zsh
+  register: cloning
+  sudo: no
 
 - name: Install Numix theme
   apt:
