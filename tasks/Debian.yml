@@ -77,7 +77,7 @@
     repo: https://github.com/robbyrussell/oh-my-zsh
     dest: ~/.oh-my-zsh
   register: cloning
-  sudo: no
+  become_user: marcos
 
 - name: Install Numix theme
   apt:
