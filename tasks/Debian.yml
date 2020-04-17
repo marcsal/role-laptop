@@ -72,10 +72,12 @@
     state: present
     update_cache: yes
     force_apt_get: yes
+
 - name: Cloning  oh-my-zsh
   git:
     repo: https://github.com/robbyrussell/oh-my-zsh
     dest: ~/.oh-my-zsh
+    version: 31eca46ee3b94ca84a038628e0bf6089a7488908
   register: cloning
   become: true
   become_user: marcos
