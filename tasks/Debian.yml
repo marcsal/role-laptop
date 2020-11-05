@@ -35,8 +35,15 @@
     - name: Add repo virtualbox
       apt_repository:
         repo: "deb http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
+        update_cache: no
         state: present
 
+    - name: Add repo virtualbox
+      apt_repository:
+        repo: "deb http://download.virtualbox.org/virtualbox/debian eoan contrib"
+        update_cache: no
+        state: present
+    
     - name: "Install VirtualBox"
       apt:
         name:
@@ -54,7 +61,26 @@
     - name: VBOX setup script
       command: /usr/lib/virtualbox/vboxdrv.sh setup
 
-  when: vbox|bool
+  when: vbox|bool and ansible_distribution_release != "focal"
+
+- name: VirtualBox Install focal
+  block:
+
+    - name: "Install VirtualBox"
+      apt:
+        name:
+          - virtualbox
+        state: present
+        update_cache: yes
+        force_apt_get: yes
+
+    - name: adding existing user to group
+      user:
+        name: "{{ user }}"
+        groups: vboxusers
+        append: yes
+
+  when: vbox|bool and ansible_distribution_release == "focal"
 
 - name: Install basic applications
   apt:
@@ -66,21 +92,12 @@
       - snapd
       - vim
       - vagrant
-      # - vlc
+      - vlc
       - gnome-tweak-tool
       - terminator
     state: present
     update_cache: yes
     force_apt_get: yes
-
-- name: Cloning  oh-my-zsh
-  git:
-    repo: https://github.com/robbyrussell/oh-my-zsh
-    dest: ~/.oh-my-zsh
-    version: 31eca46ee3b94ca84a038628e0bf6089a7488908
-  register: cloning
-  become: true
-  become_user: marcos
 
 - name: Install Numix theme
   apt:
