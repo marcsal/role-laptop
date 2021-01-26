@@ -98,6 +98,8 @@
 - name: Install adapta-gtk-theme
   apt:
     name: adapta-gtk-theme
+    update_cache: yes
+    force_apt_get: yes
 
 - name: Install atom
   apt:
