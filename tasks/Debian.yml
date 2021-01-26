@@ -90,17 +90,6 @@
     update_cache: yes
     force_apt_get: yes
 
-- name: Add repo adapta theme
-  apt_repository:
-    repo: "ppa:tista/adapta"
-    state: present
-
-- name: Install adapta-gtk-theme
-  apt:
-    name: adapta-gtk-theme
-    update_cache: yes
-    force_apt_get: yes
-
 - name: Install atom
   apt:
     deb: "https://atom-installer.github.com/v1.42.0/atom-amd64.deb?s=1576347951&ext=.deb"
