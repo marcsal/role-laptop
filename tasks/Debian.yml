@@ -26,33 +26,36 @@
 - name: VirtualBox Install
   block:
 
-    - name: Add virtualbox repo key
-      become: true
-      apt_key:
-        url: "{{ virtualboxkey }}"
-        state: present
+    # # - name: Add virtualbox repo key
+    # #   become: true
+    # #   apt_key:
+    # #     url: "{{ virtualboxkey }}"
+    # #     state: present
 
-    - name: Add repo virtualbox
-      apt_repository:
-        repo: "deb http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
-        state: present
+    # # - name: Add repo virtualbox
+    # #   apt_repository:
+    # #     repo: "deb http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
+    # #     state: present
 
-    - name: "Install VirtualBox"
-      apt:
-        name:
-          - virtualbox-6.0
-        state: present
-        update_cache: yes
-        force_apt_get: yes
+    # # - name: "Install VirtualBox"
+    # #   apt:
+    # #     name:
+    # #       - virtualbox-6.0
+    # #     state: present
+    # #     update_cache: yes
+    # #     force_apt_get: yes
 
-    - name: adding existing user to group
-      user:
-        name: "{{ user }}"
-        groups: vboxusers
-        append: yes
+    # # - name: adding existing user to group
+    # #   user:
+    # #     name: "{{ user }}"
+    # #     groups: vboxusers
+    # #     append: yes
 
-    - name: VBOX setup script
-      command: /usr/lib/virtualbox/vboxdrv.sh setup
+    # - name: VBOX setup script
+    #   command: /usr/lib/virtualbox/vboxdrv.sh setup
+      - name: Install VBOX
+        apt:
+          deb: "{{ package }}"
 
   when: vbox|bool
 
