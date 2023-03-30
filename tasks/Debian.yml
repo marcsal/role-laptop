@@ -94,15 +94,6 @@
     update_cache: yes
     force_apt_get: yes
 
-- name: Install Numix theme
-  apt:
-    name:
-      - numix-icon-theme
-      - numix-icon-theme-circle
-    state: present
-    update_cache: yes
-    force_apt_get: yes
-
 - name: Install atom
   apt:
     deb: "https://atom-installer.github.com/v1.42.0/atom-amd64.deb?s=1576347951&ext=.deb"
